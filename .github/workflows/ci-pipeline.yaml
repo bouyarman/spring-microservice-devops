@@ -24,7 +24,7 @@ jobs:
         run: cd discovery-service && mvn clean package -DskipTests
 
       - name: build-config-service
-        run: cd config-service && mvn clean package -DskipTests
+        run: cd config-servicee && mvn clean package -DskipTests
 
       - name: build-gateway-service
         run: cd gateway-service && mvn clean package -DskipTests
