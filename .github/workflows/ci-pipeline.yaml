@@ -14,8 +14,6 @@ jobs:
         with:
           java-version: 21
           distribution: "temurin"
-      - name: Check Java version
-        run: java -version
 
       - name: pulling the app
         uses: actions/checkout@v6.0.1
@@ -38,3 +36,42 @@ jobs:
       - name: build-billing-service
         run: cd billing-service && mvn clean package -DskipTests
 
+      - name: Upload Builds Artifacts
+        uses: actions/upload-artifact@v6.0.0
+        with:
+          name: 'builds artifacts'
+          path: |
+            ./discovery-service/target
+            ./config-servicee/target
+            ./gateway-service/target
+            ./customer-service/target
+            ./inventory-service/target
+            ./billing-service/target
+
+  building_images_and_push_to_docker_hub:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Java JDK
+        uses: actions/setup-java@v5.1.0
+        with:
+          java-version: 21
+          distribution: "temurin"
+
+      - name: pulling the app
+        uses: actions/checkout@v6.0.1
+
+      - name: cleaning services
+        run: |
+          cd discovery-service && mvn clean
+          cd config-servicee && mvn clean
+          cd gateway-service && mvn clean
+          cd customer-service && mvn clean
+          cd inventory-service && mvn clean
+          cd billing-service && mvn clean
+
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v7.0.0
+        with:
+          name: 'builds artifacts'
+          merge-multiple: true
