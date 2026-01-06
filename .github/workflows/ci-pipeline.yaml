@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup Java JDK
+        uses: actions/setup-java@v5.1.0
+        with:
+          java-version: 21
+          distribution: jdk
+
       - name: pulling the app
         uses: actions/checkout@v6.0.1
 
