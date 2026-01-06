@@ -14,6 +14,8 @@ jobs:
         with:
           java-version: 21
           distribution: jdk
+      - name: Check Java version
+        run: java -version
 
       - name: pulling the app
         uses: actions/checkout@v6.0.1
