@@ -50,7 +50,8 @@ jobs:
 
   building_images_and_push_to_docker_hub:
     runs-on: ubuntu-latest
-
+    needs:
+      - building_services
     steps:
       - name: Setup Java JDK
         uses: actions/setup-java@v5.1.0
@@ -64,11 +65,11 @@ jobs:
       - name: cleaning services
         run: |
           cd discovery-service && mvn clean
-          cd config-servicee && mvn clean
-          cd gateway-service && mvn clean
-          cd customer-service && mvn clean
-          cd inventory-service && mvn clean
-          cd billing-service && mvn clean
+          cd ../config-servicee && mvn clean
+          cd ../gateway-service && mvn clean
+          cd ../customer-service && mvn clean
+          cd ../inventory-service && mvn clean
+          cd ../billing-service && mvn clean
 
       - name: Download a Build Artifact
         uses: actions/download-artifact@v7.0.0
