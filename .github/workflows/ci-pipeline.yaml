@@ -50,6 +50,7 @@ jobs:
 
   building_images_and_push_to_docker_hub:
     runs-on: ubuntu-latest
+    environment: ci-pipeline-env
     needs:
       - building_services
     steps:
@@ -85,6 +86,11 @@ jobs:
           docker build -t hamza395/customer-service:v1.${{github.run_number}} ./customer-service
           docker build -t hamza395/inventory-service:v1.${{github.run_number}} ./inventory-service
           docker build -t hamza395/billing-service:v1.${{github.run_number}} ./billing-service
+
+      - name: Login docker
+        run: |
+          echo ${{secrets.DOCKER_USERNAME}} ${{secrets.DOCKER_PASSWORD}}
+          docker login --username ${{secrets.DOCKER_USERNAME}} --password ${{secrets.DOCKER_PASSWORD}}
 
       - name: Pushing images to docker hub
         run: |
