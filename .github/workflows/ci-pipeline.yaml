@@ -64,12 +64,12 @@ jobs:
 
       - name: cleaning services
         run: |
-          cd discovery-service && mvn clean && ls
-          cd ../config-servicee && mvn clean && ls
-          cd ../gateway-service && mvn clean && ls
-          cd ../customer-service && mvn clean && ls
-          cd ../inventory-service && mvn clean && ls
-          cd ../billing-service && mvn clean && ls
+          cd discovery-service && mvn clean
+          cd ../config-servicee && mvn clean
+          cd ../gateway-service && mvn clean
+          cd ../customer-service && mvn clean
+          cd ../inventory-service && mvn clean
+          cd ../billing-service && mvn clean
 
       - name: Download a Build Artifact
         uses: actions/download-artifact@v7.0.0
@@ -77,11 +77,20 @@ jobs:
           name: 'builds artifacts'
           merge-multiple: true
 
-      - name: artifacts existance verification
+      - name: Building docker images
         run: |
-          cd discovery-service && ls
-          cd ../config-servicee && ls
-          cd ../gateway-service && ls
-          cd ../customer-service && ls
-          cd ../inventory-service && ls
-          cd ../billing-service && ls
+          docker build -t hamza395/discovery-service:v1.${{github.run_number}} ./discovery-service
+          docker build -t hamza395/config-service:v1.${{github.run_number}} ./config-servicee
+          docker build -t hamza395/gateway-service:v1.${{github.run_number}} ./gateway-service
+          docker build -t hamza395/customer-service:v1.${{github.run_number}} ./customer-service
+          docker build -t hamza395/inventory-service:v1.${{github.run_number}} ./inventory-service
+          docker build -t hamza395/billing-service:v1.${{github.run_number}} ./billing-service
+
+      - name: Pushing images to docker hub
+        run: |
+          docker image push hamza395/discovery-service:v1.${{github.run_number}}
+          docker image push hamza395/config-service:v1.${{github.run_number}}
+          docker image push hamza395/gateway-service:v1.${{github.run_number}}
+          docker image push hamza395/customer-service:v1.${{github.run_number}}
+          docker image push hamza395/inventory-service:v1.${{github.run_number}}
+          docker image push hamza395/billing-service:v1.${{github.run_number}}
