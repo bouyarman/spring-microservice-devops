@@ -64,15 +64,24 @@ jobs:
 
       - name: cleaning services
         run: |
-          cd discovery-service && mvn clean
-          cd ../config-servicee && mvn clean
-          cd ../gateway-service && mvn clean
-          cd ../customer-service && mvn clean
-          cd ../inventory-service && mvn clean
-          cd ../billing-service && mvn clean
+          cd discovery-service && mvn clean && ls
+          cd ../config-servicee && mvn clean && ls
+          cd ../gateway-service && mvn clean && ls
+          cd ../customer-service && mvn clean && ls
+          cd ../inventory-service && mvn clean && ls
+          cd ../billing-service && mvn clean && ls
 
       - name: Download a Build Artifact
         uses: actions/download-artifact@v7.0.0
         with:
           name: 'builds artifacts'
           merge-multiple: true
+
+      - name: artifacts existance verification
+        run: |
+          cd discovery-service && ls
+          cd ../config-servicee && ls
+          cd ../gateway-service && ls
+          cd ../customer-service && ls
+          cd ../inventory-service && ls
+          cd ../billing-service && ls
