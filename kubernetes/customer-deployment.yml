@@ -26,5 +26,5 @@ spec:
           env:
             - name: DISCOVERY_SERVICE_URL
               value: "http://discovery-svc:8761/eureka"
-            - name: SPRING_CLOUD_CONFIG_URI
-              value: "http://config-svc:9999"
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-svc:9999
