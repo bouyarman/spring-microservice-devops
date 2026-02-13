@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
         - name: inventory-service
-          image: hamza395/inventory-service:v1.11
+          image: hamza395/inventory-service:v1.12
           ports:
             - containerPort: 8082

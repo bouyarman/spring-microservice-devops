@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
         - name: discovery-service
-          image: hamza395/discovery-service:v1.11
+          image: hamza395/discovery-service:v1.12
           ports:
             - containerPort: 8761
