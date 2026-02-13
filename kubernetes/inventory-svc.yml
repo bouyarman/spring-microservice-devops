@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-svc
+  labels:
+    name: inventory-pod
+    app: inventory-service
+spec:
+  type: NodePort
+  ports:
+    - port: 8082
+      targetPort: 8082
+      nodePort: 30001
+  selector:
+    name: inventory-pod
+    app: inventory-service

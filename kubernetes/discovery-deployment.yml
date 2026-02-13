@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-deployment
+  labels:
+    name: discovery-deployment
+    app: discovery-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: discovery-pod
+      app: discovery-service
+  template:
+    metadata:
+      name: discovery-pod
+      labels:
+        name: discovery-pod
+        app: discovery-service
+    spec:
+      containers:
+        - name: discovery-service
+          image: hamza395/discovery-service:v1.11
+          ports:
+            - containerPort: 8761

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: billing-deployment
+  labels:
+    name: billing-deployment
+    app: billing-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: billing-pod
+      app: billing-service
+  template:
+    metadata:
+      name: billing-pod
+      labels:
+        name: billing-pod
+        app: billing-service
+    spec:
+      containers:
+        - name: billing-service
+          image: hamza395/billing-service:v1.11
+          ports:
+            - containerPort: 8083

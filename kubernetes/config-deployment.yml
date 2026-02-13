@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-deployment
+  labels:
+    name: config-deployment
+    app: config-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: config-pod
+      app: config-service
+  template:
+    metadata:
+      name: config-pod
+      labels:
+        name: config-pod
+        app: config-service
+    spec:
+      containers:
+        - name: config-service
+          image: hamza395/config-service:v1.11
+          ports:
+            - containerPort: 9999
+          env:
+            - name: DISCOVERY_SERVICE_URL
+              value: "http://discovery-svc:8761/eureka"

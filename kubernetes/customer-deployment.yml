@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-deployment
+  labels:
+    name: customer-deployment
+    app: customer-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: customer-pod
+      app: customer-service
+  template:
+    metadata:
+      name: customer-pod
+      labels:
+        name: customer-pod
+        app: customer-service
+    spec:
+      containers:
+        - name: customer-service
+          image: hamza395/customer-service:v1.11
+          ports:
+            - containerPort: 8081
+          env:
+            - name: DISCOVERY_SERVICE_URL
+              value: "http://discovery-svc:8761/eureka"
