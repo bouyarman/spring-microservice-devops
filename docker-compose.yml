@@ -45,7 +45,7 @@ services:
       - "8081"
     environment:
       - DISCOVERY_SERVICE_URL=http://my-discovery-service:8761/eureka
-      - SPRING_CLOUD_CONFIG_URI=http://my-config-service:9999
+      - CONFIG_SERVICE_URL=http://my-config-service:9999
       - DOCKER_HOST_NAME=my-customer-service
     depends_on:
       my-config-service:
