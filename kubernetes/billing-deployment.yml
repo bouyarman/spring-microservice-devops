@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
         - name: billing-service
-          image: hamza395/billing-service:v1.12
+          image: hamza395/billing-service:v1.18
           ports:
             - containerPort: 8083

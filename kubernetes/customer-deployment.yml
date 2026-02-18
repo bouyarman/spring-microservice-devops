@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: customer-service
-          image: hamza395/customer-service:v1.12
+          image: hamza395/customer-service:v1.18
           ports:
             - containerPort: 8081
           env:

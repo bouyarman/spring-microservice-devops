@@ -20,6 +20,11 @@ spec:
     spec:
       containers:
         - name: inventory-service
-          image: hamza395/inventory-service:v1.12
+          image: hamza395/inventory-service:v1.18
           ports:
             - containerPort: 8082
+          env:
+            - name: DISCOVERY_SERVICE_URL
+              value: "http://discovery-svc:8761/eureka"
+            - name: CONFIG_SERVICE_URL
+              value: optional:configserver:http://config-svc:9999

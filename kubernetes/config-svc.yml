@@ -6,11 +6,10 @@ metadata:
     name: config-pod
     app: config-service
 spec:
-  type: NodePort
   ports:
-    - port: 9999
+    - protocol: TCP
+      port: 9999
       targetPort: 9999
-      nodePort: 30006
   selector:
     name: config-pod
     app: config-service

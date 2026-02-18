@@ -46,7 +46,7 @@ services:
     environment:
       - DISCOVERY_SERVICE_URL=http://my-discovery-service:8761/eureka
       - CONFIG_SERVICE_URL=http://my-config-service:9999
-      - DOCKER_HOST_NAME=my-customer-service
+      - DOCKER_K8S_HOST_NAME=my-customer-service
     depends_on:
       my-config-service:
         condition: service_healthy
